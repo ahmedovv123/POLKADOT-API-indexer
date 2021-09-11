@@ -50,7 +50,13 @@ connect.then((api) => {
 
     if (lastBlockNumber < firstBlockWithTx) {
       console.log(`Waiting to sync: ${lastBlockNumber}/${firstBlockWithTx}`);
-      await getLastBlockNumber();
+      try{
+        await getLastBlockNumber();
+      }catch(e){
+        console.log('ERROR: ' + e);
+        process.exit(1);
+      }
+      
     } else {
       let i = 1248328;
 
